@@ -1,4 +1,4 @@
-let theDate = new Date("Mar 11, 2021 17:45:00").getTime();
+let theDate = new Date("Mar 13, 2021 00:00:00").getTime();
 
 let x = setInterval(function () {
     let skrg = new Date().getTime();
