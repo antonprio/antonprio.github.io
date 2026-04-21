@@ -1,26 +1,616 @@
-<!DOCTYPE html>
+<!doctype html>
 
-<html>
-
-<head>
-    <title>COUNTDOWN</title>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-    <div class="container">
-        <h1>THIS WEB WILL LAUNCH IN </h1>
-        <div id="timer">
-            <div class="days"></div> 
-            <div class="hours"></div> 
-            <div class="minutes"></div> 
-            <div class="seconds"></div> 
-            <p id="demo"></p>
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <title>Anton Prio Hutomo</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "outline-variant": "#45464d",
+              "surface-container-highest": "#2d3449",
+              "secondary-fixed": "#d4e4fa",
+              "on-tertiary-fixed": "#002113",
+              outline: "#909097",
+              "surface-dim": "#0b1326",
+              "surface-container": "#171f33",
+              "inverse-on-surface": "#283044",
+              "surface-container-low": "#131b2e",
+              "surface-variant": "#2d3449",
+              "on-error-container": "#ffdad6",
+              "on-secondary-fixed-variant": "#39485a",
+              "inverse-primary": "#006875",
+              "tertiary-fixed": "#6ffbbe",
+              "on-primary-fixed-variant": "#004f58",
+              secondary: "#b9c8de",
+              "surface-container-lowest": "#060e20",
+              "primary-fixed": "#9cf0ff",
+              "on-error": "#690005",
+              "on-primary-fixed": "#001f24",
+              "on-primary": "#00363d",
+              "primary-fixed-dim": "#00daf3",
+              "on-surface": "#dae2fd",
+              "secondary-container": "#39485a",
+              primary: "#00daf3",
+              background: "#0b1326",
+              "on-tertiary-container": "#009365",
+              "tertiary-fixed-dim": "#4edea3",
+              "surface-tint": "#00daf3",
+              "primary-container": "#001b1f",
+              surface: "#0b1326",
+              "surface-bright": "#31394d",
+              "on-tertiary-fixed-variant": "#005236",
+              "surface-container-high": "#222a3d",
+              "tertiary-container": "#001c10",
+              "on-background": "#dae2fd",
+              "on-primary-container": "#008e9f",
+              "secondary-fixed-dim": "#b9c8de",
+              "on-secondary": "#233143",
+              "inverse-surface": "#dae2fd",
+              "on-surface-variant": "#c6c6cd",
+              tertiary: "#4edea3",
+              "on-tertiary": "#003824",
+              "on-secondary-fixed": "#0d1c2d",
+              error: "#ffb4ab",
+            },
+            borderRadius: {
+              DEFAULT: "0.125rem",
+              lg: "0.25rem",
+              xl: "0.5rem",
+              full: "0.75rem",
+            },
+            spacing: {},
+            fontFamily: {
+              headline: ["Space Grotesk"],
+              body: ["Inter"],
+              label: ["Inter"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .glass-card {
+        background: rgba(45, 52, 73, 0.4);
+        backdrop-filter: blur(12px);
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </head>
+  <body class="bg-background text-on-surface font-body selection:bg-primary/30">
+    <!-- TopNavBar -->
+    <nav
+      class="fixed top-0 w-full z-50 bg-[#0b1326]/60 backdrop-blur-xl shadow-[0_0_32px_rgba(0,218,243,0.05)]"
+    >
+      <div
+        class="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto font-['Space_Grotesk'] tracking-tight"
+      >
+        <div class="text-xl font-bold text-[#00daf3] tracking-tighter">
+          
         </div>
-    </div>
-</body>
+        <div class="hidden md:flex items-center gap-8">
+          <a
+            class="text-[#c6c6cd] hover:text-[#00daf3] transition-colors"
+            href="projects.html"
+            >Projects</a
+          >
+          <a
+            class="text-[#c6c6cd] hover:text-[#00daf3] transition-colors"
+            href="experiences.html"
+            >Experience</a
+          >
+          <a
+            class="text-[#00daf3] font-bold border-b-2 border-[#00daf3] pb-1"
+            href="#"
+            >About</a
+          >
+          <!-- <button
+            class="bg-gradient-to-br from-primary to-on-primary-container text-on-primary px-5 py-2 rounded transition-transform scale-95 active:scale-90 font-bold"
+          >
+            Contact
+          </button> -->
+        </div>
+        <div class="md:hidden">
+          <span class="material-symbols-outlined text-primary">menu</span>
+        </div>
+      </div>
+    </nav>
+    <main class="pt-24">
+      <!-- Hero Section -->
+      <section
+        class="relative min-h-[500px] flex items-center px-6 max-w-7xl mx-auto overflow-hidden"
+      >
+        <div class="w-full text-center lg:text-left">
+          <div class="z-10 relative">
+            <div
+              class="inline-flex items-center gap-2 px-3 py-1 bg-surface-container-high rounded-full mb-6 border border-outline-variant/20"
+            >
+              <span
+                class="w-2 h-2 rounded-full bg-tertiary animate-pulse"
+              ></span>
+              <span
+                class="text-xs font-label text-on-surface-variant uppercase tracking-widest"
+                >Open to work</span
+              >
+            </div>
+            <h1
+              class="font-headline text-6xl md:text-8xl font-bold tracking-tighter leading-tight mb-6"
+            >
+              Hello!
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-tertiary">I'm Anton</span>
+            </h1>
+            <p
+              class="font-body text-xl md:text-2xl text-on-surface-variant max-w-3xl leading-relaxed mb-10 mx-auto lg:mx-0"
+            >
+              Software Engineer with 9+ years of experience building scalable end to end solutions. 
+              Turning complex logic into seamless digital experiences.
+            </p>
+            <div class="flex flex-wrap gap-6 justify-center lg:justify-start">
+              <a href="projects.html"
+                class="bg-gradient-to-r from-primary to-on-primary-container text-on-primary px-8 py-4 rounded-lg font-bold text-lg hover:opacity-90 transition-all"
+                
+              >
+                Explore Works
+              </a>
+              <a href="#tech-stack"
+                class="border border-outline-variant/40 text-on-surface px-8 py-4 rounded-lg font-bold text-lg hover:bg-surface-container transition-all"
+              >
+                View Stack
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Background Ambient Glow -->
+        <div
+          class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 blur-[120px] -z-10 rounded-full"
+        ></div>
+      </section>
+      <!-- About Me Section - Asymmetric Layout -->
+      <section class="py-32 px-6 bg-surface-container-low">
+        <div class="max-w-7xl mx-auto">
+          <div class="grid lg:grid-cols-12 gap-16">
+            <div class="lg:col-span-4">
+              <h2 class="font-headline text-4xl font-bold tracking-tight mb-4">
+                Core Philosophy
+              </h2>
+              <div class="w-16 h-1 bg-primary mb-8"></div>
+              <p class="font-body text-on-surface-variant leading-relaxed">
+                I believe software is more than just code; it's the architecture
+                of human experience in a digital-first world. My approach blends
+                the rigorous testing of backend systems with user oriented mindset.
+              </p>
+            </div>
+            <div class="lg:col-span-7 lg:col-start-6 space-y-8">
+              <div
+                class="p-8 bg-surface-container-highest rounded-2xl border-l-4 border-primary"
+              >
+                <h3 class="font-headline text-2xl font-bold mb-4">
+                  Precision Engineering
+                </h3>
+                <p class="text-on-surface-variant leading-relaxed">
+                  With over 9+ years of experience in software development,
+                  I have experienced building and concentrating on high-availability systems. 
+                  My focus is reducing latency, maximizing
+                  throughput, and creating codebases that are as maintainable as
+                  they are powerful.
+                </p>
+              </div>
+              <!-- <div
+                class="p-8 bg-surface-container-highest rounded-2xl border-l-4 border-tertiary"
+              >
+                <h3 class="font-headline text-2xl font-bold mb-4">
+                  Aesthetic Logic
+                </h3>
+                <p class="text-on-surface-variant leading-relaxed">
+                  I bridge the gap between Figma and VS Code. By implementing
+                  advanced CSS techniques, custom animation engines, and
+                  meticulous attention to typography, I ensure that every user
+                  interaction is fluid and meaningful.
+                </p>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Tech Stack Bento Grid -->
+      <section class="py-32 px-6" id="tech-stack">
+        <div class="max-w-7xl mx-auto">
+          <div
+            class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6"
+          >
+            <div>
+              <h2
+                class="font-headline text-5xl font-bold tracking-tighter mb-4"
+              >
+                The Stack
+              </h2>
+              <p
+                class="text-on-surface-variant font-label uppercase tracking-widest text-sm"
+              >
+                System Tools &amp; Technologies
+              </p>
+            </div>
+            <!-- <div class="text-right">
+              <span class="text-6xl font-black text-outline/10 font-headline"
+                >010101</span
+              >
+            </div> -->
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            <!-- Languages -->
+            <div
+              class="md:col-span-2 lg:col-span-3 bg-surface-container-low p-8 rounded-2xl transition-all hover:bg-surface-container-high group"
+            >
+              <div class="flex justify-between items-start mb-12">
+                <span
+                  class="material-symbols-outlined text-4xl text-primary"
+                  style="font-variation-settings: &quot;FILL&quot; 1"
+                  >terminal</span
+                >
+                <span
+                  class="text-xs font-label text-outline uppercase tracking-widest"
+                  >Languages</span
+                >
+              </div>
+              <div class="flex flex-wrap gap-3">
+                <span
+                  class="px-4 py-2 bg-surface-container-highest rounded-lg flex items-center gap-2"
+                >
+                  <span class="w-1 h-1 rounded-full bg-tertiary"></span>
+                  <span class="text-sm font-label">Node.js</span>
+                </span>
+                <span
+                  class="px-4 py-2 bg-surface-container-highest rounded-lg flex items-center gap-2"
+                >
+                  <span class="w-1 h-1 rounded-full bg-tertiary"></span>
+                  <span class="text-sm font-label">Go</span>
+                </span>
+                <span
+                  class="px-4 py-2 bg-surface-container-highest rounded-lg flex items-center gap-2"
+                >
+                  <span class="w-1 h-1 rounded-full bg-tertiary"></span>
+                  <span class="text-sm font-label">PHP</span>
+                </span>
+                <span
+                  class="px-4 py-2 bg-surface-container-highest rounded-lg flex items-center gap-2"
+                >
+                  <span class="w-1 h-1 rounded-full bg-tertiary"></span>
+                  <span class="text-sm font-label">Typescript</span>
+                </span>
+              </div>
+            </div>
+            <!-- Frameworks -->
+            <div
+              class="md:col-span-2 lg:col-span-3 bg-surface-container-low p-8 rounded-2xl transition-all hover:bg-surface-container-high"
+            >
+              <div class="flex justify-between items-start mb-12">
+                <span
+                  class="material-symbols-outlined text-4xl text-tertiary"
+                  style="font-variation-settings: &quot;FILL&quot; 1"
+                  >layers</span
+                >
+                <span
+                  class="text-xs font-label text-outline uppercase tracking-widest"
+                  >Frameworks</span
+                >
+              </div>
+              <div class="flex flex-wrap gap-3">
+                <span
+                  class="px-4 py-2 bg-surface-container-highest rounded-lg flex items-center gap-2"
+                >
+                  <span class="w-1 h-1 rounded-full bg-tertiary"></span>
+                  <span class="text-sm font-label">Express.js</span>
+                </span>
+                <span
+                  class="px-4 py-2 bg-surface-container-highest rounded-lg flex items-center gap-2"
+                >
+                  <span class="w-1 h-1 rounded-full bg-tertiary"></span>
+                  <span class="text-sm font-label">Nest.js</span>
+                </span>
+                <span
+                  class="px-4 py-2 bg-surface-container-highest rounded-lg flex items-center gap-2"
+                >
+                  <span class="w-1 h-1 rounded-full bg-tertiary"></span>
+                  <span class="text-sm font-label">Laravel</span>
+                </span>
+                <span
+                  class="px-4 py-2 bg-surface-container-highest rounded-lg flex items-center gap-2"
+                >
+                  <span class="w-1 h-1 rounded-full bg-tertiary"></span>
+                  <span class="text-sm font-label">Codeigniter</span>
+                </span>
+              </div>
+            </div>
+            <!-- Infrastructure -->
+            <div
+              class="md:col-span-6 lg:col-span-6 bg-surface-container-low p-8 rounded-2xl transition-all hover:bg-surface-container-high"
+            >
+              <div class="flex justify-between items-start mb-8">
+                <span
+                  class="material-symbols-outlined text-4xl text-primary-fixed-dim"
+                  style="font-variation-settings: &quot;FILL&quot; 1"
+                  >cloud</span
+                >
+                <span
+                  class="text-xs font-label text-outline uppercase tracking-widest"
+                  >Infrastructure</span
+                >
+              </div>
+              <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+                <div>
+                  <div class="text-on-surface font-bold mb-1">AWS & GCP</div>
+                  <div class="text-xs text-on-surface-variant font-label">
+                    Cloud Deployment
+                  </div>
+                </div>
+                <div>
+                  <div class="text-on-surface font-bold mb-1">Docker</div>
+                  <div class="text-xs text-on-surface-variant font-label">
+                    Containerization
+                  </div>
+                </div>
+                <div>
+                  <div class="text-on-surface font-bold mb-1">Kubernetes</div>
+                  <div class="text-xs text-on-surface-variant font-label">
+                    Orchestration
+                  </div>
+                </div>
+                <div>
+                  <div class="text-on-surface font-bold mb-1">PostgreSQL, MySQL, MongoDB, SQL Server</div>
+                  <div class="text-xs text-on-surface-variant font-label">
+                    Data Persistence
+                  </div>
+                </div>
+                <div>
+                  <div class="text-on-surface font-bold mb-1">Redis</div>
+                  <div class="text-xs text-on-surface-variant font-label">
+                    Caching Systems
+                  </div>
+                </div>
+                <div>
+                  <div class="text-on-surface font-bold mb-1">Github & Gitlab</div>
+                  <div class="text-xs text-on-surface-variant font-label">
+                    Code Versioning
+                  </div>
+                </div>
+                <div>
+                  <div class="text-on-surface font-bold mb-1">Jenkins & Gitlab CI</div>
+                  <div class="text-xs text-on-surface-variant font-label">
+                    Deployment Tools
+                  </div>
+                </div>
+                <div>
+                  <div class="text-on-surface font-bold mb-1">Jira, Trello, Asana</div>
+                  <div class="text-xs text-on-surface-variant font-label">
+                    Project Management
+                  </div>
+                </div>
+                <div>
+                  <div class="text-on-surface font-bold mb-1">Windows & Linux</div>
+                  <div class="text-xs text-on-surface-variant font-label">
+                    Server OS
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Visual Tools -->
+            <!-- <div
+              class="md:col-span-4 lg:col-span-2 bg-surface-container-low p-8 rounded-2xl transition-all hover:bg-surface-container-high"
+            >
+              <div class="flex justify-between items-start mb-8">
+                <span
+                  class="material-symbols-outlined text-4xl text-on-tertiary-container"
+                  style="font-variation-settings: &quot;FILL&quot; 1"
+                  >token</span
+                >
+                <span
+                  class="text-xs font-label text-outline uppercase tracking-widest"
+                  >Design</span
+                >
+              </div>
+              <ul class="space-y-4">
+                <li
+                  class="flex justify-between items-center border-b border-outline-variant/10 pb-2"
+                >
+                  <span class="font-body text-sm">Figma</span>
+                  <span class="text-xs font-label text-tertiary">Expert</span>
+                </li>
+                <li
+                  class="flex justify-between items-center border-b border-outline-variant/10 pb-2"
+                >
+                  <span class="font-body text-sm">Spline</span>
+                  <span class="text-xs font-label text-tertiary"
+                    >Intermediate</span
+                  >
+                </li>
+                <li
+                  class="flex justify-between items-center border-b border-outline-variant/10 pb-2"
+                >
+                  <span class="font-body text-sm">Motion UI</span>
+                  <span class="text-xs font-label text-tertiary">Expert</span>
+                </li>
+              </ul>
+            </div> -->
+          </div>
+        </div>
+      </section>
+      <!-- Contact Grid Section -->
+      <section
+        class="py-32 px-6 bg-surface-container-lowest border-t border-outline-variant/10"
+      >
+        <div class="max-w-7xl mx-auto">
+          <div class="text-center mb-16">
+            <h2
+              class="font-headline text-5xl md:text-6xl font-bold tracking-tighter mb-4 leading-tight"
+            >
+              Ready to <span class="text-primary italic">initialize</span>?
+            </h2>
+            <p class="text-on-surface-variant text-lg max-w-2xl mx-auto">
+              Currently available for new opportunities, architectural
+              consulting, and technical collaborations.
+            </p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Email Card -->
+            <a
+              class="group glass-card p-8 rounded-2xl border border-outline-variant/20 hover:border-primary/50 transition-all duration-300"
+              href="mailto:antonpriohutomo@gmail.com"
+            >
+              <div
+                class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors"
+              >
+                <span class="material-symbols-outlined text-primary">mail</span>
+              </div>
+              <div
+                class="text-xs font-label text-outline uppercase tracking-widest mb-1"
+              >
+                Email Protocol
+              </div>
+              <div
+                class="text-xl font-bold font-headline group-hover:text-primary transition-colors"
+              >
+                Send me an email
+              </div>
+              <div
+                class="mt-4 flex items-center gap-2 text-on-surface-variant text-sm group-hover:text-on-surface transition-colors"
+              >
+                Send transmission
+                <span class="material-symbols-outlined text-sm"
+                  >arrow_forward</span
+                >
+              </div>
+            </a>
+            <!-- Phone Card -->
+            <a
+              class="group glass-card p-8 rounded-2xl border border-outline-variant/20 hover:border-primary/50 transition-all duration-300"
+              href="https://github.com/antonprio"
+            >
+              <div
+                class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors"
+              >
+                <span class="material-symbols-outlined text-primary">Merge</span>
+              </div>
+              <div
+                class="text-xs font-label text-outline uppercase tracking-widest mb-1"
+              >
+                Github
+              </div>
+              <div
+                class="text-xl font-bold font-headline group-hover:text-primary transition-colors"
+              >
+                Anton Prio on Github
+              </div>
+              <div
+                class="mt-4 flex items-center gap-2 text-on-surface-variant text-sm group-hover:text-on-surface transition-colors"
+              >
+                Visit
+                <span class="material-symbols-outlined text-sm"
+                  >arrow_forward</span
+                >
+              </div>
+            </a>
+            <!-- Network Card -->
+            <a
+              class="group glass-card p-8 rounded-2xl border border-outline-variant/20 hover:border-primary/50 transition-all duration-300"
+              href="https://www.linkedin.com/in/anton-prio" target="_blank"
+            >
+              <div
+                class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors"
+              >
+                <span class="material-symbols-outlined text-primary">hub</span>
+              </div>
+              <div
+                class="text-xs font-label text-outline uppercase tracking-widest mb-1"
+              >
+                Global Network
+              </div>
+              <div
+                class="text-xl font-bold font-headline group-hover:text-primary transition-colors"
+              >
+                Anton Prio on LinkedIn
+              </div>
+              <div
+                class="mt-4 flex items-center gap-2 text-on-surface-variant text-sm group-hover:text-on-surface transition-colors"
+              >
+                Connect profile
+                <span class="material-symbols-outlined text-sm"
+                  >arrow_forward</span
+                >
+              </div>
+            </a>
+          </div>
+          <div class="mt-16 flex flex-col items-center gap-6">
+            <div class="text-center">
+              <div
+                class="text-xs font-label text-outline uppercase tracking-widest mb-2"
+              >
+                Location Node
+              </div>
+              <div class="text-2xl font-headline font-bold">
+                Jakarta, Indonesia
+              </div>
+            </div>
+            <div
+              class="w-full max-w-md h-px bg-gradient-to-r from-transparent via-outline-variant/30 to-transparent"
+            ></div>
+          </div>
+        </div>
+      </section>
+    </main>
 
-<script src="script.js"></script>
-
+    <!-- Footer -->
+    <footer
+      class="bg-[#131b2e] w-full py-12 px-8 flex flex-col md:flex-row justify-between items-center gap-6"
+    >
+      <div class="flex flex-col items-center md:items-start">
+        <!-- <span class="text-lg font-space-grotesk font-bold text-white mb-2"
+          >Algorithmic Architect</span
+        > -->
+        <p class="font-inter text-sm text-slate-400">
+          © 2026 Anton Prio Hutomo. Built with precision.
+        </p>
+      </div>
+      <div class="flex gap-8">
+        <a
+          class="font-inter text-sm text-slate-400 hover:text-[#4edea3] transition-colors hover:translate-y-[-2px] transition-transform"
+          href="mailto:antonpriohutomo@gmail.com"
+          >Email</a
+        >
+        <a
+          class="font-inter text-sm text-slate-400 hover:text-[#4edea3] transition-colors hover:translate-y-[-2px] transition-transform"
+          href="https://www.linkedin.com/in/anton-prio" target="_blank"
+          >LinkedIn</a
+        >
+        <a
+          class="font-inter text-sm text-slate-400 hover:text-[#4edea3] transition-colors hover:translate-y-[-2px] transition-transform"
+          href="https://github.com/antonprio" target="_blank"
+          >GitHub</a
+        >
+      </div>
+    </footer>
+  </body>
 </html>
