@@ -85,6 +85,39 @@
       };
     </script>
     <style>
+      .bar {
+        position: absolute;
+        width: 24px;
+        height: 2px;
+        background-color: #00daf3;
+        border-radius: 9999px;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .top-bar {
+        transform: translateY(-8px);
+      }
+
+      .middle-bar {
+        transform: translateY(0);
+      }
+
+      .bottom-bar {
+        transform: translateY(8px);
+      }
+
+      /* Active animation */
+      .open .top-bar {
+        transform: rotate(45deg);
+      }
+
+      .open .middle-bar {
+        opacity: 0;
+      }
+
+      .open .bottom-bar {
+        transform: rotate(-45deg);
+      }
       .material-symbols-outlined {
         font-variation-settings:
           "FILL" 0,
@@ -99,50 +132,93 @@
       html {
         scroll-behavior: smooth;
       }
+      /* Mobile navbar fixes */
+      @media (max-width: 767px) {
+        #desktopNav {
+          display: none !important;
+        }
+        #mobileMenu {
+          display: flex !important;
+        }
+      }
+      @media (min-width: 768px) {
+        #desktopNav {
+          display: flex !important;
+        }
+        #mobileMenu {
+          display: none !important;
+        }
+      }
     </style>
   </head>
   <body class="bg-background text-on-surface font-body selection:bg-primary/30">
     <!-- TopNavBar -->
     <nav
-      class="fixed top-0 w-full z-50 bg-[#0b1326]/60 backdrop-blur-xl shadow-[0_0_32px_rgba(0,218,243,0.05)]"
+      class="fixed top-0 left-0 right-0 w-full z-50 bg-[#0b1326]/60 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,218,243,0.05)] bg-gradient-to-b from-[#131b2e] to-transparent"
     >
       <div
-        class="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto font-['Space_Grotesk'] tracking-tight"
+        class="flex justify-between items-center w-full px-4 md:px-6 lg:px-8 py-4 max-w-7xl mx-auto"
       >
-        <div class="text-xl font-bold text-[#00daf3] tracking-tighter">
+        <!-- Logo -->
+        <div class="text-lg md:text-xl font-bold text-[#00daf3] tracking-tighter font-['Space_Grotesk']">
           
         </div>
-        <div class="hidden md:flex items-center gap-8">
-          <a
-            class="text-[#c6c6cd] hover:text-[#00daf3] transition-colors"
-            href="projects.html"
-            >Projects</a
-          >
-          <a
-            class="text-[#c6c6cd] hover:text-[#00daf3] transition-colors"
-            href="experiences.html"
-            >Experience</a
-          >
-          <a
-            class="text-[#00daf3] font-bold border-b-2 border-[#00daf3] pb-1"
-            href="#"
-            >About</a
-          >
-          <!-- <button
-            class="bg-gradient-to-br from-primary to-on-primary-container text-on-primary px-5 py-2 rounded transition-transform scale-95 active:scale-90 font-bold"
-          >
-            Contact
-          </button> -->
+
+        <!-- Desktop Nav -->
+        <div
+          class="hidden md:flex items-center gap-8 font-['Space_Grotesk'] tracking-tight"
+        >
+          <a class="text-[#c6c6cd] font-medium hover:text-cyan-300 transition-all duration-300" href="projects.html">
+            Projects
+          </a>
+          <a class="text-[#c6c6cd] font-medium hover:text-cyan-300 transition-all duration-300" href="experiences.html">
+            Experience
+          </a>
+          <a class="text-[#00daf3] font-bold border-b-2 border-[#00daf3] pb-1 hover:text-cyan-300 transition-all duration-300" href="#">
+            About
+          </a>
         </div>
-        <div class="md:hidden">
-          <span class="material-symbols-outlined text-primary">menu</span>
-        </div>
+
+        <!-- Animated Hamburger -->
+        <button
+          id="menuBtn"
+          class="md:hidden flex flex-col justify-center items-center w-10 h-10 relative"
+        >
+          <span class="bar top-bar"></span>
+          <span class="bar middle-bar"></span>
+          <span class="bar bottom-bar"></span>
+        </button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div
+        id="mobileNav"
+        class="hidden md:hidden flex flex-col px-4 pb-4 gap-4 bg-[#131b2e]/95 backdrop-blur-lg font-['Space_Grotesk']"
+      >
+        <a class="text-[#c6c6cd] font-medium hover:text-cyan-300 transition-all duration-300" href="projects.html">
+          Projects
+        </a>
+        <a class="text-[#c6c6cd] font-medium hover:text-cyan-300 transition-all duration-300" href="experiences.html">
+          Experience
+        </a>
+        <a class="text-[#00daf3] font-bold hover:text-cyan-300 transition-all duration-300" href="#">
+          About
+        </a>
       </div>
     </nav>
+    <script>
+      const menuBtn = document.getElementById("menuBtn");
+      const mobileNav = document.getElementById("mobileNav");
+
+      menuBtn.addEventListener("click", () => {
+        mobileNav.classList.toggle("hidden");
+        menuBtn.classList.toggle("open");
+      });
+    </script>
     <main class="pt-24">
       <!-- Hero Section -->
       <section
-        class="relative min-h-[500px] flex items-center px-6 max-w-7xl mx-auto overflow-hidden"
+        class="relative min-h-screen md:min-h-[500px] flex items-center px-4 md:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden"
       >
         <div class="w-full text-center lg:text-left">
           <div class="z-10 relative">
@@ -158,26 +234,26 @@
               >
             </div>
             <h1
-              class="font-headline text-6xl md:text-8xl font-bold tracking-tighter leading-tight mb-6"
+              class="font-headline text-4xl md:text-6xl lg:text-8xl font-bold tracking-tighter leading-tight mb-6"
             >
               Hello!
               <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-tertiary">I'm Anton</span>
             </h1>
             <p
-              class="font-body text-xl md:text-2xl text-on-surface-variant max-w-3xl leading-relaxed mb-10 mx-auto lg:mx-0"
+              class="font-body text-lg md:text-xl lg:text-2xl text-on-surface-variant max-w-3xl leading-relaxed mb-10 mx-auto lg:mx-0"
             >
               Software Engineer with 9+ years of experience building scalable end to end solutions. 
               Turning complex logic into seamless digital experiences.
             </p>
-            <div class="flex flex-wrap gap-6 justify-center lg:justify-start">
+            <div class="flex flex-wrap gap-4 md:gap-6 justify-center lg:justify-start">
               <a href="projects.html"
-                class="bg-gradient-to-r from-primary to-on-primary-container text-on-primary px-8 py-4 rounded-lg font-bold text-lg hover:opacity-90 transition-all"
+                class="bg-gradient-to-r from-primary to-on-primary-container text-on-primary px-6 md:px-8 py-3 md:py-4 rounded-lg font-bold text-base md:text-lg hover:opacity-90 transition-all"
                 
               >
                 Explore Works
               </a>
               <a href="#tech-stack"
-                class="border border-outline-variant/40 text-on-surface px-8 py-4 rounded-lg font-bold text-lg hover:bg-surface-container transition-all"
+                class="border border-outline-variant/40 text-on-surface px-6 md:px-8 py-3 md:py-4 rounded-lg font-bold text-base md:text-lg hover:bg-surface-container transition-all"
               >
                 View Stack
               </a>
@@ -190,11 +266,11 @@
         ></div>
       </section>
       <!-- About Me Section - Asymmetric Layout -->
-      <section class="py-32 px-6 bg-surface-container-low">
+      <section class="py-16 md:py-24 lg:py-32 px-4 md:px-6 lg:px-8 bg-surface-container-low">
         <div class="max-w-7xl mx-auto">
-          <div class="grid lg:grid-cols-12 gap-16">
+          <div class="grid lg:grid-cols-12 gap-8 md:gap-12 lg:gap-16">
             <div class="lg:col-span-4">
-              <h2 class="font-headline text-4xl font-bold tracking-tight mb-4">
+              <h2 class="font-headline text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight mb-4">
                 Core Philosophy
               </h2>
               <div class="w-16 h-1 bg-primary mb-8"></div>
@@ -237,14 +313,14 @@
         </div>
       </section>
       <!-- Tech Stack Bento Grid -->
-      <section class="py-32 px-6" id="tech-stack">
+      <section class="py-16 md:py-24 lg:py-32 px-4 md:px-6 lg:px-8" id="tech-stack">
         <div class="max-w-7xl mx-auto">
           <div
-            class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6"
+            class="flex flex-col md:flex-row justify-between items-end mb-8 md:mb-16 gap-6"
           >
             <div>
               <h2
-                class="font-headline text-5xl font-bold tracking-tighter mb-4"
+                class="font-headline text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter mb-4"
               >
                 The Stack
               </h2>
@@ -260,10 +336,10 @@
               >
             </div> -->
           </div>
-          <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-4">
             <!-- Languages -->
             <div
-              class="md:col-span-2 lg:col-span-3 bg-surface-container-low p-8 rounded-2xl transition-all hover:bg-surface-container-high group"
+              class="md:col-span-2 lg:col-span-3 bg-surface-container-low p-6 md:p-8 rounded-2xl transition-all hover:bg-surface-container-high group"
             >
               <div class="flex justify-between items-start mb-12">
                 <span
@@ -305,7 +381,7 @@
             </div>
             <!-- Frameworks -->
             <div
-              class="md:col-span-2 lg:col-span-3 bg-surface-container-low p-8 rounded-2xl transition-all hover:bg-surface-container-high"
+              class="md:col-span-2 lg:col-span-3 bg-surface-container-low p-6 md:p-8 rounded-2xl transition-all hover:bg-surface-container-high"
             >
               <div class="flex justify-between items-start mb-12">
                 <span
@@ -347,7 +423,7 @@
             </div>
             <!-- Infrastructure -->
             <div
-              class="md:col-span-6 lg:col-span-6 bg-surface-container-low p-8 rounded-2xl transition-all hover:bg-surface-container-high"
+              class="md:col-span-6 lg:col-span-6 bg-surface-container-low p-6 md:p-8 rounded-2xl transition-all hover:bg-surface-container-high"
             >
               <div class="flex justify-between items-start mb-8">
                 <span
@@ -460,12 +536,12 @@
       </section>
       <!-- Contact Grid Section -->
       <section
-        class="py-32 px-6 bg-surface-container-lowest border-t border-outline-variant/10"
+        class="py-16 md:py-24 lg:py-32 px-4 md:px-6 lg:px-8 bg-surface-container-lowest border-t border-outline-variant/10"
       >
         <div class="max-w-7xl mx-auto">
-          <div class="text-center mb-16">
+          <div class="text-center mb-8 md:mb-16">
             <h2
-              class="font-headline text-5xl md:text-6xl font-bold tracking-tighter mb-4 leading-tight"
+              class="font-headline text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tighter mb-4 leading-tight"
             >
               Ready to <span class="text-primary italic">initialize</span>?
             </h2>
@@ -477,7 +553,7 @@
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <!-- Email Card -->
             <a
-              class="group glass-card p-8 rounded-2xl border border-outline-variant/20 hover:border-primary/50 transition-all duration-300"
+              class="group glass-card p-6 md:p-8 rounded-2xl border border-outline-variant/20 hover:border-primary/50 transition-all duration-300"
               href="mailto:antonpriohutomo@gmail.com"
             >
               <div
@@ -506,7 +582,7 @@
             </a>
             <!-- Phone Card -->
             <a
-              class="group glass-card p-8 rounded-2xl border border-outline-variant/20 hover:border-primary/50 transition-all duration-300"
+              class="group glass-card p-6 md:p-8 rounded-2xl border border-outline-variant/20 hover:border-primary/50 transition-all duration-300"
               href="https://github.com/antonprio"
             >
               <div
@@ -535,7 +611,7 @@
             </a>
             <!-- Network Card -->
             <a
-              class="group glass-card p-8 rounded-2xl border border-outline-variant/20 hover:border-primary/50 transition-all duration-300"
+              class="group glass-card p-6 md:p-8 rounded-2xl border border-outline-variant/20 hover:border-primary/50 transition-all duration-300"
               href="https://www.linkedin.com/in/anton-prio" target="_blank"
             >
               <div
@@ -584,7 +660,7 @@
 
     <!-- Footer -->
     <footer
-      class="bg-[#131b2e] w-full py-12 px-8 flex flex-col md:flex-row justify-between items-center gap-6"
+      class="bg-[#131b2e] w-full py-8 md:py-12 px-4 md:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4 md:gap-6"
     >
       <div class="flex flex-col items-center md:items-start">
         <!-- <span class="text-lg font-space-grotesk font-bold text-white mb-2"
@@ -594,7 +670,7 @@
           © 2026 Anton Prio Hutomo. Built with precision.
         </p>
       </div>
-      <div class="flex gap-8">
+      <div class="flex gap-4 md:gap-8">
         <a
           class="font-inter text-sm text-slate-400 hover:text-[#4edea3] transition-colors hover:translate-y-[-2px] transition-transform"
           href="mailto:antonpriohutomo@gmail.com"
